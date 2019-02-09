@@ -135,7 +135,7 @@ namespace kill_me
                 
             }
 
-            customers:/// used for the goto statment to code jump so that we can allow smooth breaks during the customer greeting process.
+            customers:/// used for the goto statment to code jump so that we can allow smooth breaks during the customer greeting process. DONT @ ME
             bool idk = true;
             while (idk)
             {
@@ -245,7 +245,7 @@ namespace kill_me
                             }
                             if (i == 'q')
                             {
-
+                                
                                 
                                 
                                 Console.WriteLine("would you like to do");
@@ -342,6 +342,7 @@ namespace kill_me
                                 if (j == price1)
                                 {
                                     total = total + p1;
+                                    
                                 }
                                 if (j == price2)
                                 {
@@ -369,7 +370,7 @@ namespace kill_me
                         }
                         int pay1 = 0;
                         //string total1 = total.ToString();
-                        Console.WriteLine($"this costs £{total:F2}");
+                        Console.WriteLine($"this costs £{total}");
 
                         Console.WriteLine("please put the amount you will pay");
                         string pay = Console.ReadLine();
@@ -387,14 +388,16 @@ namespace kill_me
                         {
                             int change = pay1 - total;
                             int newFloat = Float - pay1;
-
+                            Float = newFloat;
+                            
+                            Console.WriteLine("your new float is {0}", newFloat);
+                            System.Threading.Thread.Sleep(1500);
                             string pay2 = change.ToString();
                             Console.Clear();
-                            Console.WriteLine($"gives *order* with £{pay2:F2}");
-                            System.Threading.Thread.Sleep(1000);
-                            money = false;
-                            ded = false;
-                            idk = false;
+                            Console.WriteLine($"gives *order* with £{pay2}");
+                            System.Threading.Thread.Sleep(500);
+                            Console.Clear();
+                            goto menu;
 
                         }
                         if (pay1 == total)
@@ -432,22 +435,46 @@ namespace kill_me
                     break;
                 }
 
-                exit:
+            close_down:
                 {
+                    Console.WriteLine("what would you like to do");
+                    Console.WriteLine("check your final float (1)");
+                    Console.WriteLine("close down the till");
+
+                    string userinput2 = Console.ReadLine();
+                    if (userinput2 == "1")
+                    {
+                        Console.WriteLine("your final float for the day is {0}", Float);
+                        System.Threading.Thread.Sleep(1500);
+                        goto close_down;
+                    }
+                    else if (userinput2 == "2")
+                    {
+                        Console.WriteLine("till is now closed");
+                        goto close_down;
+                    }
+                    else if (userinput2 == "3")
+                    {
+                        goto exit;
+                    }
+
+                }
+                exit:
+                
                     Console.WriteLine("thank you for using the lemon shop application, to exit press 'E' to go to close down press 'c'");
                     string userinput = Console.ReadLine().ToUpper();
                     if (userinput == "C")
                     {
                         Console.WriteLine("close down code needed here");
-                        /// goto close_down;
+                        goto close_down;
                     }
-                    else if (userinput == "E") ;
+                    else if (userinput == "E") 
                     {
                         Console.WriteLine("thank you for playing");
                         System.Threading.Thread.Sleep(1500);
                         Environment.Exit(0);
                     }
-                }
+            
             }
 
         }
